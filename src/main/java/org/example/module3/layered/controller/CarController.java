@@ -1,9 +1,9 @@
-package org.example.module3.lesson2layered.controller;
+package org.example.module3.layered.controller;
 
-import org.example.module3.lesson2layered.dto.CarDto;
-import org.example.module3.lesson2layered.repository.CarRepositoryImpl;
-import org.example.module3.lesson2layered.service.CarService;
-import org.example.module3.lesson2layered.service.CarServiceImpl;
+import org.example.module3.layered.dto.CarDto;
+import org.example.module3.layered.repository.CarRepositoryImpl;
+import org.example.module3.layered.service.CarService;
+import org.example.module3.layered.service.CarServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +37,7 @@ public class CarController {
     public void deleteCar(@PathVariable(name="byid") int id){
         carService.deleteCarById(id);
     }
+
     @PostMapping("/updatecar/{byid}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateCar(@PathVariable(name="byid") int id,@RequestBody CarDto carDto){

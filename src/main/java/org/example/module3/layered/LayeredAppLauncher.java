@@ -1,6 +1,5 @@
-package org.example.module3.lesson2layered;
+package org.example.module3.layered;
 
-import org.example.module3.lesson2.AnnotationsBasedBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

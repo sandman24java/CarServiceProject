@@ -1,5 +1,5 @@
-package org.example.module3.lesson2layered.service;
-import org.example.module3.lesson2layered.dto.CarDto;
+package org.example.module3.layered.service;
+import org.example.module3.layered.dto.CarDto;
 
 import java.util.List;
 

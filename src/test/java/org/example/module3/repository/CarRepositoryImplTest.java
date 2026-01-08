@@ -1,8 +1,8 @@
 package org.example.module3.repository;
 
-import org.example.module3.lesson2layered.model.CarEntity;
-import org.example.module3.lesson2layered.repository.CarRepository;
-import org.example.module3.lesson2layered.repository.CarRepositoryImpl;
+import org.example.module3.layered.model.CarEntity;
+import org.example.module3.layered.repository.CarRepository;
+import org.example.module3.layered.repository.CarRepositoryImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

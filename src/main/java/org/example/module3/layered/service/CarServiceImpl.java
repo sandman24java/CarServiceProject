@@ -1,9 +1,10 @@
-package org.example.module3.lesson2layered.service;
+package org.example.module3.layered.service;
 
-import org.example.module3.lesson2layered.dto.CarDto;
-import org.example.module3.lesson2layered.exception.CarNotFoundException;
-import org.example.module3.lesson2layered.model.CarEntity;
-import org.example.module3.lesson2layered.repository.CarRepository;
+import org.example.module3.layered.dto.CarDto;
+import org.example.module3.layered.exception.CarErrorEnum;
+import org.example.module3.layered.exception.CarException;
+import org.example.module3.layered.model.CarEntity;
+import org.example.module3.layered.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDto getCarById(int id) {
-        CarEntity car = carRepository.getCarById(id).orElseThrow(()-> new CarNotFoundException("Car not found"));
+        CarEntity car = carRepository.getCarById(id).orElseThrow(()-> new CarException(CarErrorEnum.CAR_NOT_FOUND));
         return new CarDto(car.getName(), car.getSpeed(), car.getColor());
     }
 

@@ -1,6 +1,8 @@
-package org.example.module3.lesson2layered.repository;
+package org.example.module3.layered.repository;
 
-import org.example.module3.lesson2layered.model.CarEntity;
+import org.example.module3.layered.exception.CarErrorEnum;
+import org.example.module3.layered.exception.CarException;
+import org.example.module3.layered.model.CarEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -43,6 +45,12 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public void deleteCarById(int id) {
-        carEntities.removeIf(carEntity->carEntity.getId()==id);
+        CarEntity carToDelete = carEntities.stream()
+                .filter(car -> car.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND, id));
+
+        carEntities.remove(carToDelete);
     }
 }
+// carEntity->carEntity.getId()==id

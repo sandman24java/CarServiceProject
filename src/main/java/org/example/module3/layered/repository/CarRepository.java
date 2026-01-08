@@ -1,6 +1,6 @@
-package org.example.module3.lesson2layered.repository;
+package org.example.module3.layered.repository;
 
-import org.example.module3.lesson2layered.model.CarEntity;
+import org.example.module3.layered.model.CarEntity;
 
 import java.util.List;
 import java.util.Optional;

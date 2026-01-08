@@ -1,6 +1,5 @@
-package org.example.module3.lesson2layered.model;
+package org.example.module3.layered.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

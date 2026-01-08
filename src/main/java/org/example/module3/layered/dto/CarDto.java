@@ -1,4 +1,4 @@
-package org.example.module3.lesson2layered.dto;
+package org.example.module3.layered.dto;
 
 public record CarDto(String name,int speed, String color, Integer id) {
     public CarDto(String name, int speed, String color){

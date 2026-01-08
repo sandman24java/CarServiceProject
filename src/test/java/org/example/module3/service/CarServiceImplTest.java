@@ -1,11 +1,11 @@
 package org.example.module3.service;
 
 
-import org.example.module3.lesson2layered.dto.CarDto;
-import org.example.module3.lesson2layered.exception.CarNotFoundException;
-import org.example.module3.lesson2layered.model.CarEntity;
-import org.example.module3.lesson2layered.repository.CarRepository;
-import org.example.module3.lesson2layered.service.CarServiceImpl;
+import org.example.module3.layered.dto.CarDto;
+import org.example.module3.layered.exception.CarException;
+import org.example.module3.layered.model.CarEntity;
+import org.example.module3.layered.repository.CarRepository;
+import org.example.module3.layered.service.CarServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,12 +39,12 @@ public class CarServiceImplTest {
     @Test
     public void getCarByIdFail() {
         Mockito.when(carRepository.getCarById(Mockito.anyInt())).thenReturn(Optional.empty());
-        Assertions.assertThrows(CarNotFoundException.class,()->carServiceImpl.getCarById(1));
+        Assertions.assertThrows(CarException.class,()->carServiceImpl.getCarById(1));
     }
     @Test
     void getCarById_throw(){
         Mockito.when(carRepository.getCarById(Mockito.anyInt())).thenReturn(Optional.empty());
-        Assertions.assertThrows(CarNotFoundException.class,()->carServiceImpl.getCarById(1));
+        Assertions.assertThrows(CarException.class,()->carServiceImpl.getCarById(1));
     }
     @Test
     void getCarsTest(){
