@@ -5,7 +5,7 @@ import org.example.module3.layered.dto.CarDto;
 import org.example.module3.layered.exception.CarException;
 import org.example.module3.layered.model.CarEntity;
 import org.example.module3.layered.repository.CarRepository;
-import org.example.module3.layered.service.CarServiceImpl;
+import org.example.module3.layered.service.CarServiceImplForDev;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-public class CarServiceImplTest {
+public class CarServiceImplForDevTest {
     @Mock
     private CarRepository carRepository;
     @InjectMocks
-    private CarServiceImpl carServiceImpl;
+    private CarServiceImplForDev carServiceImplForDev;
 
 
 
@@ -30,7 +30,7 @@ public class CarServiceImplTest {
     public void getCarByIdSuccess() {
         Mockito.when(carRepository.getCarById(Mockito.anyInt()))
                 .thenReturn(Optional.of(new CarEntity("Ferrari",200,"Red")));
-        CarDto carDtoActual = carServiceImpl.getCarById(1);
+        CarDto carDtoActual = carServiceImplForDev.getCarById(1);
         CarDto carDtoExpected = new CarDto("Ferrari",200,"Red");
         Assertions.assertEquals(carDtoExpected.name(),carDtoActual.name());
         Assertions.assertEquals(carDtoExpected.speed(),carDtoActual.speed());
@@ -39,17 +39,17 @@ public class CarServiceImplTest {
     @Test
     public void getCarByIdFail() {
         Mockito.when(carRepository.getCarById(Mockito.anyInt())).thenReturn(Optional.empty());
-        Assertions.assertThrows(CarException.class,()->carServiceImpl.getCarById(1));
+        Assertions.assertThrows(CarException.class,()-> carServiceImplForDev.getCarById(1));
     }
     @Test
     void getCarById_throw(){
         Mockito.when(carRepository.getCarById(Mockito.anyInt())).thenReturn(Optional.empty());
-        Assertions.assertThrows(CarException.class,()->carServiceImpl.getCarById(1));
+        Assertions.assertThrows(CarException.class,()-> carServiceImplForDev.getCarById(1));
     }
     @Test
     void getCarsTest(){
         Mockito.when(carRepository.getCars()).thenReturn(List.of(new CarEntity("Red",100,"Ferrari")));
-        List<CarDto> actualList = carServiceImpl.getCars();
+        List<CarDto> actualList = carServiceImplForDev.getCars();
         List<CarDto> expectedList = List.of(new CarDto("Red",100,"Ferrari"));
         Assertions.assertEquals(actualList.get(0).speed(),expectedList.get(0).speed());
         Assertions.assertEquals(actualList.get(0).color(),expectedList.get(0).color());
@@ -59,18 +59,18 @@ public class CarServiceImplTest {
     @Test
     void addCarTest(){
         CarDto carDto = new CarDto("Red",100,"Ferrari");
-        carServiceImpl.addCar(carDto);
+        carServiceImplForDev.addCar(carDto);
         Mockito.verify(carRepository).saveCar(new CarEntity("Red",100,"Ferrari"));
     }
     @Test
     void updateCarTestIdExists(){
         CarDto carDto = new CarDto("Red",100,"Ferrari");
-        carServiceImpl.updateCar(1,carDto);
+        carServiceImplForDev.updateCar(1,carDto);
         Mockito.verify(carRepository).updateCar(1,new CarEntity("Red",100,"Ferrari"));
     }
     @Test
     void deleteCarByIdTest(){
-        carServiceImpl.deleteCarById(1);
+        carServiceImplForDev.deleteCarById(1);
         Mockito.verify(carRepository).deleteCarById(1);
     }
 

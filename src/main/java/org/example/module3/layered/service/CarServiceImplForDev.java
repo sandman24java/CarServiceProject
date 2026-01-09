@@ -1,22 +1,26 @@
 package org.example.module3.layered.service;
 
+import org.example.module3.layered.config.ProfileConfig;
 import org.example.module3.layered.dto.CarDto;
 import org.example.module3.layered.exception.CarErrorEnum;
 import org.example.module3.layered.exception.CarException;
 import org.example.module3.layered.model.CarEntity;
 import org.example.module3.layered.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CarServiceImpl implements CarService {
+@Profile("dev")
+public class CarServiceImplForDev implements CarService {
 
     public final CarRepository carRepository;
 
+
     @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImplForDev(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 

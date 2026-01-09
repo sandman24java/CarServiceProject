@@ -1,3 +1,9 @@
-server:
-  servlet:
-    context-path: /cars-app
+spring:
+  profiles:
+    active: ${MY_PROFILE_NAME:dev}
+logging:
+  level:
+    org.springframework.core.env: INFO
+app:
+  name: layered-app
+  max-results: 50
