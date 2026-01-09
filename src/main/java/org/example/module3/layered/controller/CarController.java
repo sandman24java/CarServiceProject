@@ -7,6 +7,7 @@ import org.example.module3.layered.exception.base.BaseException;
 import org.example.module3.layered.repository.CarRepositoryImpl;
 import org.example.module3.layered.service.CarService;
 import org.example.module3.layered.service.CarServiceImplForDev;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +20,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/cars")
 public class CarController {
-    private final CarService carService = new CarServiceImplForDev(new CarRepositoryImpl());
+    private final CarService carService;
     private final ProfileConfig config;
 
     @Value("${app.show-history}")
     private String nameFromProfileAsValue;
 
-    public CarController(ProfileConfig config){
+    @Autowired
+    public CarController(ProfileConfig config, CarService carService){
         this.config = config;
+        this.carService = carService;
     }
 
     @GetMapping("/info")
