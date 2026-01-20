@@ -2,21 +2,16 @@ server:
   servlet:
     context-path: /cars-app
 spring:
-  profiles:
-    active:
-      local
-  application:
-    name: local
   datasource:
     # Базовые настройки подключения
     url: jdbc:postgresql://localhost:5432/car
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
     # Настройки пула HikariCP (то, что было в твоих config.set...)
     hikari:
-      schema: ${SCHEMA}
+      schema: car-service
       auto-commit: true
       minimum-idle: 2
       idle-timeout: 40000
