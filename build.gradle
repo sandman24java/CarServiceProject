@@ -36,6 +36,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     // Драйвер для подключения к PostgreSQL
     runtimeOnly 'org.postgresql:postgresql'
+    // (Hibernate) Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {

@@ -2,6 +2,12 @@ server:
   servlet:
     context-path: /cars-app
 spring:
+  jpa:
+    hibernate:
+      ddl-auto:
+        none
+
+    show-sql: true
   profiles:
     active:
       local

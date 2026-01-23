@@ -26,11 +26,20 @@ public class CarController {
         return carService.getBrands();
     }
 
-    @PostMapping("/addbrand")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addBrands(@RequestBody  BrandDto brandDto){
-        carService.addBrand(brandDto);
+        @GetMapping("/getbrand/{byid}")
+    @ResponseStatus(HttpStatus.OK)
+    public BrandDto getBrandById(@PathVariable(name="byid") Long id){
+        return carService.getBrandById(id);
     }
+
+
+
+
+//    @PostMapping("/addbrand")
+//    @ResponseStatus(HttpStatus.ACCEPTED)
+//    public void addBrands(@RequestBody  BrandDto brandDto){
+//        carService.addBrand(brandDto);
+//    }
 //
 //    @PostMapping("/addcar")
 //    @ResponseStatus(HttpStatus.ACCEPTED)

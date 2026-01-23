@@ -1,19 +1,36 @@
 package org.example.module3.layered.model;
 
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @EqualsAndHashCode
+@NoArgsConstructor
 @Setter
 @Getter
+@Entity
+@Table(name = "brand",schema="carsdb")
 public class BrandEntity {
-    private Integer id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private String name;
+
+    @Column
     private String country;
+
+    @Column(name="founded_year")
     private Integer foundedYear;
 
-    public BrandEntity(Integer id, String name, String country, Integer foundedYear) {
+
+    public BrandEntity(Long id, String name, String country, Integer foundedYear) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -26,8 +43,7 @@ public class BrandEntity {
         this.foundedYear = foundedYear;
     }
 
-
-
-
+    @OneToMany(mappedBy="brandEntity")
+    private List<ModelEntity> modelEntities;
 
 }
