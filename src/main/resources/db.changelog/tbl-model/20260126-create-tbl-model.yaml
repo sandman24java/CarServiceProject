@@ -1,11 +1,11 @@
 databaseChangeLog:
-  - logicalFilePath: brand-module
+  - logicalFilePath: model-module
   - changeSet:
       id: 1
       author: adiljafarov
       changes:
         - createTable:
-            tableName: brand
+            tableName: model
             columns:
               - column:
                   name: id
@@ -20,13 +20,26 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
-                    unique: true
               - column:
-                  name: country
+                  name: category
                   type: varchar(255)
+                  constraints:
+                    nullable: false
               - column:
-                  name: founded_year
+                  name: year_from
                   type: int
               - column:
-                  name: trigger_column
-                  type: varchar(255)
+                  name: year_to
+                  type: int
+              - column:
+                  name: brand_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseColumnNames: brand_id
+            baseTableName: model
+            constraintName: fk_model_brand
+            referencedColumnNames: id
+            referencedTableName: brand

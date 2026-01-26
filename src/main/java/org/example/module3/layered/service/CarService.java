@@ -7,7 +7,7 @@ import java.util.List;
 public interface CarService {
     List<BrandDto> getBrands();
 
-    BrandDto getBrandById(Long id);
+    BrandDto getBrandById(Integer id);
 
     void addBrand(BrandDto brandDto);
 //

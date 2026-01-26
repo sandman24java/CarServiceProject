@@ -8,7 +8,7 @@ import org.example.module3.layered.model.ModelEntity;
 
 import java.util.List;
 
-public record BrandDto(Long id,
+public record BrandDto(Integer id,
                        @NotBlank(message = "name can not be empty or null") String name,
                        String country,
                        @Positive(message="founded year must be positive") @Min(1900) @Max(2100)Integer foundedYear,

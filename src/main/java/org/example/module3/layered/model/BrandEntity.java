@@ -18,7 +18,7 @@ public class BrandEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column
     private String name;
@@ -30,7 +30,7 @@ public class BrandEntity {
     private Integer foundedYear;
 
 
-    public BrandEntity(Long id, String name, String country, Integer foundedYear) {
+    public BrandEntity(Integer id, String name, String country, Integer foundedYear) {
         this.id = id;
         this.name = name;
         this.country = country;

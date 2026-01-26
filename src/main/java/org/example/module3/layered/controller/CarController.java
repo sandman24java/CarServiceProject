@@ -32,7 +32,7 @@ public class CarController {
 
     @GetMapping("/getbrand/{byid}")
     @ResponseStatus(HttpStatus.OK)
-    public BrandDto getBrandById(@PathVariable(name="byid") Long id){
+    public BrandDto getBrandById(@PathVariable(name="byid") Integer id){
         return carService.getBrandById(id);
     }
 

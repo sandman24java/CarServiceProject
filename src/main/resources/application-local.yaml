@@ -11,7 +11,7 @@ spring:
 
     # Настройки пула HikariCP (то, что было в твоих config.set...)
     hikari:
-      schema: car-service
+      schema: carsdb
       auto-commit: true
       minimum-idle: 2
       idle-timeout: 40000

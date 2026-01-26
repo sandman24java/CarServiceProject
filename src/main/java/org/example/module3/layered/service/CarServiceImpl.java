@@ -53,7 +53,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional(readOnly = true)
-    public BrandDto getBrandById(Long id) {
+    public BrandDto getBrandById(Integer id) {
         BrandEntity brand = brandRepository.findById(id).orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND));
         return new BrandDto(brand.getId(),brand.getName(), brand.getCountry(), brand.getFoundedYear(),brand.getModelEntities()
                 .stream()

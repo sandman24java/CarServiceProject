@@ -4,11 +4,11 @@ server:
 spring:
   liquibase:
     enabled: true
-    change-log: src/main/resources/db.changelog/tbl-brand/20260126-create-tbl-brand.yaml
+    change-log: classpath:db.changelog/db.changelog.yaml
   jpa:
     hibernate:
       ddl-auto:
-        validate
+        none
     show-sql: true
   profiles:
     active:
