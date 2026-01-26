@@ -38,6 +38,11 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     // (Hibernate) Data JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Validated for DTO validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // Liquidbase
+    implementation 'org.springframework.boot:spring-boot-starter-liquibase'
+    testImplementation 'org.springframework.boot:spring-boot-starter-liquibase-test'
 }
 
 tasks.named('test') {

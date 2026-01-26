@@ -2,11 +2,13 @@ server:
   servlet:
     context-path: /cars-app
 spring:
+  liquibase:
+    enabled: true
+    change-log: src/main/resources/db.changelog/tbl-brand/20260126-create-tbl-brand.yaml
   jpa:
     hibernate:
       ddl-auto:
-        none
-
+        validate
     show-sql: true
   profiles:
     active:

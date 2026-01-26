@@ -9,9 +9,7 @@ public interface CarService {
 
     BrandDto getBrandById(Long id);
 
-
-
-//    void addBrand(BrandDto brandDto);
+    void addBrand(BrandDto brandDto);
 //
 //    void updateCar(int id, CarDto carDto);
 //

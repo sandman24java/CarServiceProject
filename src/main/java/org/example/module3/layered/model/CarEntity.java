@@ -15,8 +15,8 @@ import java.util.List;
 public class CarEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column
     private String vin;
@@ -25,10 +25,10 @@ public class CarEntity {
     private String registrationNumber;
 
     @Column(name="mileage_km")
-    private String mileageKm;
+    private Integer mileageKm;
 
     @Column(name="production_year")
-    private String productionYear;
+    private Integer productionYear;
 
     @OneToOne(mappedBy = "carEntity")
     private CarDetailsEntity carDetailsEntity;

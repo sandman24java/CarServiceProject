@@ -15,8 +15,8 @@ import java.util.List;
 public class CarDetailsEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name="engine_number",nullable = false,length = 20)
     private String engineNumber;

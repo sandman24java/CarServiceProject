@@ -17,7 +17,7 @@ import java.util.List;
 public class BrandEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -43,7 +43,7 @@ public class BrandEntity {
         this.foundedYear = foundedYear;
     }
 
-    @OneToMany(mappedBy="brandEntity")
+    @OneToMany(mappedBy="brandEntity",fetch=FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ModelEntity> modelEntities;
 
 }

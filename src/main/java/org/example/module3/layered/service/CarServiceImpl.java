@@ -5,12 +5,15 @@ import org.example.module3.layered.dto.ModelDto;
 import org.example.module3.layered.exception.CarErrorEnum;
 import org.example.module3.layered.exception.CarException;
 import org.example.module3.layered.model.BrandEntity;
+import org.example.module3.layered.model.ModelEntity;
 import org.example.module3.layered.repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -26,7 +29,7 @@ public class CarServiceImpl implements CarService {
     @Override
     @Transactional(readOnly = true)
     public List<BrandDto> getBrands() {
-        return brandRepository.findAll()
+        return brandRepository.findAllOptimised()
                 .stream()
                 .map(brandEntity -> new BrandDto(
                         brandEntity.getId(),
@@ -52,16 +55,40 @@ public class CarServiceImpl implements CarService {
     @Transactional(readOnly = true)
     public BrandDto getBrandById(Long id) {
         BrandEntity brand = brandRepository.findById(id).orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND));
-        return new BrandDto(brand.getName(), brand.getCountry(), brand.getFoundedYear());
+        return new BrandDto(brand.getId(),brand.getName(), brand.getCountry(), brand.getFoundedYear(),brand.getModelEntities()
+                .stream()
+                .map(modelEntity -> new ModelDto(
+                        modelEntity.getId(),
+                        modelEntity.getName(),
+                        modelEntity.getCategory(),
+                        modelEntity.getYearFrom(),
+                        modelEntity.getYearTo()
+                )).toList());
+    }
+
+    @Override
+    @Transactional
+    public void addBrand(BrandDto brandDto) {
+        BrandEntity brandEntity = new BrandEntity();
+        brandEntity.setName(brandDto.name());
+        brandEntity.setFoundedYear(brandDto.foundedYear());
+        brandEntity.setCountry(brandDto.country());
+        var listOfModelEntities = Optional.ofNullable(brandDto.modelDtoList())
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(modelDto->new ModelEntity(
+                        modelDto.id(),
+                        modelDto.name(),
+                        modelDto.category(),
+                        modelDto.yearFrom(),
+                        modelDto.yearTo(),
+                        brandEntity
+                        )).toList();
+        brandEntity.setModelEntities(listOfModelEntities);
+        brandRepository.save(brandEntity);
     }
 }
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    public void addBrand(BrandDto brandDto) {
-//        carRepository.addBrand(new BrandEntity(brandDto.name(), brandDto.country(), brandDto.foundedYear()));
-//    }
-//}
+
 //
 //    @Override
 //    public void updateCar(int id, CarDto carDto) {
