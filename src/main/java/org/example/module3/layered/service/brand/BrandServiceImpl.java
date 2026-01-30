@@ -1,4 +1,4 @@
-package org.example.module3.layered.service;
+package org.example.module3.layered.service.brand;
 
 import org.example.module3.layered.dto.BrandDto;
 import org.example.module3.layered.dto.ModelDto;
@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CarServiceImpl implements CarService {
+public class BrandServiceImpl implements BrandService {
 
     public final BrandRepository brandRepository;
 
     @Autowired
-    public CarServiceImpl(BrandRepository brandRepository) {
+    public BrandServiceImpl(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }
 
@@ -87,16 +87,23 @@ public class CarServiceImpl implements CarService {
         brandEntity.setModelEntities(listOfModelEntities);
         brandRepository.save(brandEntity);
     }
-}
 
-//
-//    @Override
-//    public void updateCar(int id, CarDto carDto) {
-//        carRepository.updateCar(id, new CarEntity(carDto.name(),carDto.speed(),carDto.color()));
-//    }
-//
-//    @Override
-//    public void deleteCarById(int id) {
-//        carRepository.deleteCarById(id);
-//    }
-//}
+    @Override
+    @Transactional
+    public void updateBrand(Long id, BrandDto brandDto) {
+        BrandEntity brandEntity = brandRepository.findById(id).orElseThrow(() -> new CarException(CarErrorEnum.CAR_NOT_FOUND));
+        brandEntity.setName(brandDto.name());
+        brandEntity.setFoundedYear(brandDto.foundedYear());
+        brandEntity.setCountry(brandDto.country());
+
+    }
+
+    @Override
+    public void deleteBrandById(Long id) {
+        BrandEntity brandEntity = brandRepository.findById(id).orElseThrow(()-> new CarException(CarErrorEnum.CAR_NOT_FOUND));
+        brandRepository.delete(brandEntity);
+    }
+
+
+
+}

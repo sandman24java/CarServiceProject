@@ -3,7 +3,7 @@ server:
     context-path: /cars-app
 spring:
   liquibase:
-    enabled: true
+    enabled: false
     change-log: src/main/resources/db.changelog/tbl-brand/20260126-create-tbl-brand.yaml
   jpa:
     hibernate:

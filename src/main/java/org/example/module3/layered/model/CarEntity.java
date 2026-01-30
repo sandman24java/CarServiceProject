@@ -2,6 +2,8 @@ package org.example.module3.layered.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
@@ -11,8 +13,26 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@SQLDelete(sql="UPDATE carsdb.car SET deleted = true WHERE id=?")
+@SQLRestriction("deleted = false")
 @Table(name = "car",schema="carsdb")
 public class CarEntity {
+
+
+    public CarEntity(String vin, String registrationNumber, Integer mileageKm, Integer productionYear, ModelEntity modelEntity) {
+        this.vin = vin;
+        this.registrationNumber = registrationNumber;
+        this.mileageKm = mileageKm;
+        this.productionYear = productionYear;
+        this.modelEntity = modelEntity;
+    }
+    public CarEntity(Integer id, String vin, String registrationNumber, Integer mileageKm, Integer productionYear) {
+        this.id = id;
+        this.vin = vin;
+        this.registrationNumber = registrationNumber;
+        this.mileageKm = mileageKm;
+        this.productionYear = productionYear;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,15 +50,28 @@ public class CarEntity {
     @Column(name="production_year")
     private Integer productionYear;
 
-    @OneToOne(mappedBy = "carEntity")
+    @Column
+    private boolean deleted = false;
+
+    @OneToOne(mappedBy = "carEntity",fetch = FetchType.EAGER)
     private CarDetailsEntity carDetailsEntity;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="car_feature",
             joinColumns = @JoinColumn(name="car_id"),
             inverseJoinColumns = @JoinColumn(name="feature_id") )
     private List<FeatureEntity> featureEntities;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="model_id")
+    private ModelEntity modelEntity;
+
+    @OneToMany(mappedBy = "carEntity",fetch = FetchType.LAZY)
+    private List<ServiceVisitEntity> serviceVisitEntities;
+
+
 
 //    1. name = "car_feature"
 //    Это имя той самой третьей таблицы, которая лежит в БД и хранит только пары ID.

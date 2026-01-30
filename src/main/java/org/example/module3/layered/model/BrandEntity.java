@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@SQLDelete(sql="UPDATE carsdb.brand SET deleted = true WHERE id=?")
+@SQLRestriction("deleted = false")
 @Table(name = "brand",schema="carsdb")
 public class BrandEntity {
 
@@ -28,6 +32,9 @@ public class BrandEntity {
 
     @Column(name="founded_year")
     private Integer foundedYear;
+
+    @Column
+    private boolean deleted = false;
 
 
     public BrandEntity(Long id, String name, String country, Integer foundedYear) {
