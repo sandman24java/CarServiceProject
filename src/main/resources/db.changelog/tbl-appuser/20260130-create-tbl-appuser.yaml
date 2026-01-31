@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - logicalFilePath: 20260131-create-tbl-app-user.yaml
+  - changeSet:
+      id: 20260131-1-create-tbl-app-user
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: app_user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: created_at
+                  type: datetime
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 20260131-2-create-join-tbl-user-role
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_role_user
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: app_user
+                    referencedColumnNames: id
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_role_role
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: role
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            schemaName: carsdb
+            tableName: user_role
+            columnNames: user_id, role_id
+            constraintName: pk_user_role

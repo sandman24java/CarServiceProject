@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - logicalFilePath: 20260131-create-tbl-permission.yaml
+  - changeSet:
+      id: 20260131-1-create-tbl-permission
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: permission
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: http_method
+                  type: varchar(10)
+              - column:
+                  name: path_pattern
+                  type: varchar(255)
+              - column:
+                  name: permission_code
+                  type: varchar(100)
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: 20260131-2-create-join-tbl-role-permission
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: role_permission
+            columns:
+              - column:
+                  name: permission_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_permission_perm
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: permission
+                    referencedColumnNames: id
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_role_permission_role
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: role
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            schemaName: carsdb
+            tableName: role_permission
+            columnNames: permission_id, role_id
+            constraintName: pk_role_permission

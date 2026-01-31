@@ -1,0 +1,47 @@
+ databaseChangeLog:
+    - logicalFilePath: 20260131-create-tbl-car-details.yaml
+    - changeSet:
+        id: 20260131-1-create-tbl-car-details
+        author: adiljafarov
+        changes:
+          - createTable:
+              schemaName: carsdb
+              tableName: cardetails
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: engine_number
+                    type: varchar(20)
+                    constraints:
+                      nullable: false
+                - column:
+                    name: registration_code
+                    type: varchar(255)
+                - column:
+                    name: fuel_type
+                    type: varchar(255)
+                - column:
+                    name: engine_capacity
+                    type: varchar(255)
+                - column:
+                    name: color
+                    type: varchar(255)
+                - column:
+                    name: insurance_number
+                    type: varchar(255)
+                - column:
+                    name: car_id
+                    type: int
+                    constraints:
+                      nullable: false
+                      unique: true
+                      foreignKeyName: fk_cardetails_car
+                      referencedTableSchemaName: carsdb
+                      referencedTableName: car
+                      referencedColumnNames: id

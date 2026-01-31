@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath: 20260131-create-tbl-service-part.yaml
+  - changeSet:
+      id: 20260131-1-create-tbl-service-part
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: service_part
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: part_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_service_part_part
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: part
+                    referencedColumnNames: id
+              - column:
+                  name: service_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_service_part_service
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: service_visit
+                    referencedColumnNames: id

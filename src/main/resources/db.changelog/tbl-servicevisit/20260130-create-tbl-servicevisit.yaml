@@ -1,0 +1,40 @@
+ databaseChangeLog:
+    - logicalFilePath: 20260131-create-tbl-service-visit.yaml
+    - changeSet:
+        id: 20260131-1-create-tbl-service-visit
+        author: adiljafarov
+        changes:
+          - createTable:
+              schemaName: carsdb
+              tableName: service_visit
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    autoIncrement: true
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: service_date
+                    type: datetime
+                    constraints:
+                      nullable: false
+                - column:
+                    name: odometer_km
+                    type: int
+                - column:
+                    name: service_type
+                    type: varchar(255)
+                - column:
+                    name: notes
+                    type: varchar(1000)
+                - column:
+                    name: car_id
+                    type: int
+                    constraints:
+                      nullable: false
+                      foreignKeyName: fk_service_visit_car
+                      referencedTableSchemaName: carsdb
+                      referencedTableName: car
+                      referencedColumnNames: id

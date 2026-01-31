@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - logicalFilePath: 20260131-create-tbl-part.yaml
+  - changeSet:
+      id: 20260131-1-create-tbl-part
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: part
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: part_code
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: description
+                  type: varchar(1000)
+              - column:
+                  name: unit_price
+                  type: decimal(19, 2)
+              - column:
+                  name: brand
+                  type: varchar(255)

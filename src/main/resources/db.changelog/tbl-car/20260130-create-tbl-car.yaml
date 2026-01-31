@@ -1,0 +1,79 @@
+databaseChangeLog:
+  - logicalFilePath: 20260131-create-tbl-car.yaml
+  - changeSet:
+      id: 20260131-1-create-tbl-car
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: car
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: vin
+                  type: varchar(17) # Стандартная длина VIN
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: registration_number
+                  type: varchar(20)
+              - column:
+                  name: mileage_km
+                  type: int
+              - column:
+                  name: production_year
+                  type: int
+              - column:
+                  name: deleted
+                  type: boolean
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_car_model
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: model
+                    referencedColumnNames: id
+
+  - changeSet:
+      id: 20260131-2-create-tbl-car-feature
+      author: adiljafarov
+      changes:
+        - createTable:
+            schemaName: carsdb
+            tableName: car_feature
+            columns:
+              - column:
+                  name: car_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_car_feature_car
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: car
+                    referencedColumnNames: id
+              - column:
+                  name: feature_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_car_feature_feature
+                    referencedTableSchemaName: carsdb
+                    referencedTableName: feature
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            schemaName: carsdb
+            tableName: car_feature
+            columnNames: car_id, feature_id
+            constraintName: pk_car_feature
