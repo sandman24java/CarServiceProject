@@ -8,7 +8,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto:
-        validate
+        update
     show-sql: true
   profiles:
     active:

@@ -6,6 +6,8 @@ public enum CarErrorEnum implements BaseErrorService {
 
     CAR_NOT_FOUND("CAR_NOT_FOUND-0001", "CAR_NOT_FOUND", 404);
 
+
+
     final String message;
 
     final int httpStatus;

@@ -1,16 +1,13 @@
 package org.example.module3.layered.service.model;
 
-import org.example.module3.layered.dto.BrandDto;
-import org.example.module3.layered.dto.CarDto;
-import org.example.module3.layered.dto.ModelDto;
+import org.example.module3.layered.dto.cars.dto.CarDto;
+import org.example.module3.layered.dto.cars.dto.ModelDto;
 import org.example.module3.layered.exception.CarErrorEnum;
 import org.example.module3.layered.exception.CarException;
-import org.example.module3.layered.model.BrandEntity;
 import org.example.module3.layered.model.CarEntity;
 import org.example.module3.layered.model.ModelEntity;
-import org.example.module3.layered.repository.BrandRepository;
-import org.example.module3.layered.repository.CarRepository;
-import org.example.module3.layered.repository.ModelRepository;
+import org.example.module3.layered.repository.cars.repository.BrandRepository;
+import org.example.module3.layered.repository.cars.repository.ModelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

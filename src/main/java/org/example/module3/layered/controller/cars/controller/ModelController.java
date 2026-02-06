@@ -1,8 +1,7 @@
-package org.example.module3.layered.controller;
+package org.example.module3.layered.controller.cars.controller;
 
 import jakarta.validation.Valid;
-import org.example.module3.layered.dto.CarDto;
-import org.example.module3.layered.dto.ModelDto;
+import org.example.module3.layered.dto.cars.dto.ModelDto;
 import org.example.module3.layered.service.model.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

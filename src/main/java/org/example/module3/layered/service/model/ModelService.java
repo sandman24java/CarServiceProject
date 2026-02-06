@@ -1,7 +1,6 @@
 package org.example.module3.layered.service.model;
 
-import org.example.module3.layered.dto.CarDto;
-import org.example.module3.layered.dto.ModelDto;
+import org.example.module3.layered.dto.cars.dto.ModelDto;
 
 import java.util.List;
 

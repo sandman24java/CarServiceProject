@@ -1,6 +1,10 @@
 server:
   servlet:
     context-path: /cars-app
+jwt:
+  secret: "dj4jdkdfk5jdkkf5j54kfkfmkk4kfkfk5kffj5kfifudj5"
+  access-exp: 3600000        # Время в миллисекундах (например, 1 час)
+  refresh-exp: 86400000      # Время в миллисекундах (например, 24 часа)
 spring:
   datasource:
     # Базовые настройки подключения

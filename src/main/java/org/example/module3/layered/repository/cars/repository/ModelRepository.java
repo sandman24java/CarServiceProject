@@ -1,7 +1,5 @@
-package org.example.module3.layered.repository;
+package org.example.module3.layered.repository.cars.repository;
 
-import org.example.module3.layered.model.BrandEntity;
-import org.example.module3.layered.model.CarEntity;
 import org.example.module3.layered.model.ModelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

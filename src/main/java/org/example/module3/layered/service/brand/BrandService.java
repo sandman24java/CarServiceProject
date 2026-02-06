@@ -1,5 +1,5 @@
 package org.example.module3.layered.service.brand;
-import org.example.module3.layered.dto.BrandDto;
+import org.example.module3.layered.dto.cars.dto.BrandDto;
 
 import java.util.List;
 

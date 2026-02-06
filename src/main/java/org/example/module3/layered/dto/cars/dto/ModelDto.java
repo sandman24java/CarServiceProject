@@ -1,6 +1,4 @@
-package org.example.module3.layered.dto;
-
-import jakarta.validation.constraints.NotBlank;
+package org.example.module3.layered.dto.cars.dto;
 
 import java.util.List;
 

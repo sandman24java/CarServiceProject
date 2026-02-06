@@ -1,10 +1,9 @@
-package org.example.module3.layered.dto;
+package org.example.module3.layered.dto.cars.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import org.example.module3.layered.model.ModelEntity;
 
 import java.util.List;
 
