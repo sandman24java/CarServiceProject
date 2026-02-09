@@ -1,6 +1,8 @@
 package org.example.carservice.dto.auth.dto;
 
+import org.example.carservice.annotations.LogIgnore;
+
 public record LoginRequestDto(
         String username,
-        String password
+        @LogIgnore String password
 ) {}

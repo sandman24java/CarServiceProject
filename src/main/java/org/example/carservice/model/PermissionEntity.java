@@ -27,7 +27,7 @@ public class PermissionEntity {
     private String permissionCode;
 
     @ManyToMany
-    @JoinTable(name="role_permission",joinColumns = @JoinColumn(name="permission_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
+    @JoinTable(name="role_permission",schema = "carsdb",joinColumns = @JoinColumn(name="permission_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
     private List<RoleEntity> roleEntities;
 
 }

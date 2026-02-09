@@ -30,7 +30,7 @@ public class RegisterService {
             throw new AuthException(AuthErrorEnum.USERNAME_EXISTS);
         }
 
-        RoleEntity userRole = roleRepo.findByName("USER").orElseThrow();
+        RoleEntity userRole = roleRepo.findByName("Mechanic").orElseThrow();
 
         AppUserEntity user = new AppUserEntity();
         user.setUsername(req.username());
